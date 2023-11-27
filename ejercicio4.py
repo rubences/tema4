@@ -38,6 +38,34 @@ def newton_raphson(x0, tol):
 # Programa principal
 a, b = 1, 2
 tol = 1e-6
-print("Método de bisección:", biseccion(a, b, tol))
-print("Método de la secante:", secante(a, b, tol))
-print("Método de Newton-Raphson:", newton_raphson(a, tol))
+x, iteraciones = biseccion(a, b, tol)
+print(f'Raíz aproximada: {x}')
+print(f'Iteraciones: {iteraciones}')
+x, iteraciones = secante(a, b, tol)
+print(f'Raíz aproximada: {x}')
+print(f'Iteraciones: {iteraciones}')
+x, iteraciones = newton_raphson(a, tol)
+print(f'Raíz aproximada: {x}')
+print(f'Iteraciones: {iteraciones}')
+
+import matplotlib.pyplot as plt
+
+# Calcular las raíces e iteraciones
+raiz_biseccion, iteraciones_biseccion = biseccion(a, b, tol)
+raiz_secante, iteraciones_secante = secante(a, b, tol)
+raiz_newton, iteraciones_newton = newton_raphson(a, tol)
+
+# Crear una lista con los nombres de los métodos
+metodos = ['Bisección', 'Secante', 'Newton-Raphson']
+
+# Crear una lista con las iteraciones de cada método
+iteraciones = [iteraciones_biseccion, iteraciones_secante, iteraciones_newton]
+
+# Crear una gráfica de barras
+plt.bar(metodos, iteraciones)
+plt.xlabel('Método')
+plt.ylabel('Iteraciones')
+plt.title('Comparación de iteraciones para cada método')
+plt.show()
+
+# Path: ejercicio5.py
