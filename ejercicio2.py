@@ -47,7 +47,73 @@ class GestorMisiones:
         while self.misiones:
             mision = heapq.heappop(self.misiones)
             print(f'Tipo: {mision.tipo}, Reino destino: {mision.reino_destino}, Dios: {mision.dios}, Prioridad: {"alta" if mision.prioridad == 0 else "baja"}')
+class Nodo:
+    def __init__(self, mision):
+        self.mision = mision
+        self.siguiente = None
 
+class LinkedList:
+    def __init__(self):
+        self.cabeza = None
+
+    def agregar_nodo(self, mision):
+        if not self.cabeza:
+            self.cabeza = Nodo(mision)
+        else:
+            actual = self.cabeza
+            while actual.siguiente:
+                actual = actual.siguiente
+            actual.siguiente = Nodo(mision)
+
+    def imprimir_nodos(self):
+        actual = self.cabeza
+        while actual:
+            mision = actual.mision
+            print(f'Tipo: {mision.tipo}, Reino destino: {mision.reino_destino}, Dios: {mision.dios}, Prioridad: {"alta" if mision.prioridad == 0 else "baja"}')
+            actual = actual.siguiente
+
+class GestorMisiones:
+    def __init__(self):
+        self.misiones = LinkedList()
+
+    def agregar_mision(self, mision):
+        self.misiones.agregar_nodo(mision)
+
+    def mostrar_misiones(self):
+        self.misiones.imprimir_nodos()class Nodo:
+    def __init__(self, mision):
+        self.mision = mision
+        self.siguiente = None
+
+class LinkedList:
+    def __init__(self):
+        self.cabeza = None
+
+    def agregar_nodo(self, mision):
+        if not self.cabeza:
+            self.cabeza = Nodo(mision)
+        else:
+            actual = self.cabeza
+            while actual.siguiente:
+                actual = actual.siguiente
+            actual.siguiente = Nodo(mision)
+
+    def imprimir_nodos(self):
+        actual = self.cabeza
+        while actual:
+            mision = actual.mision
+            print(f'Tipo: {mision.tipo}, Reino destino: {mision.reino_destino}, Dios: {mision.dios}, Prioridad: {"alta" if mision.prioridad == 0 else "baja"}')
+            actual = actual.siguiente
+
+class GestorMisiones:
+    def __init__(self):
+        self.misiones = LinkedList()
+
+    def agregar_mision(self, mision):
+        self.misiones.agregar_nodo(mision)
+
+    def mostrar_misiones(self):
+        self.misiones.imprimir_nodos()
 if __name__ == "__main__":
     gestor = GestorMisiones()
 
